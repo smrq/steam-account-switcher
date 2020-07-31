@@ -1,0 +1,145 @@
+.layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	padding: calc(2rem + 1.25rem + 0.5rem) 2rem;
+}
+
+.layout > nav {
+	position: absolute;
+	top: 2rem;
+	display: flex;
+}
+
+.logo {
+	margin-right: auto;
+	height: 1.25rem;
+}
+
+.layout > main {
+	margin-top: auto;
+	margin-bottom: auto;
+	text-align: center;
+	justify-content: center;
+	background: radial-gradient(40% 30%, hsl(213, 75%, 25%), transparent);
+}
+
+.layout > main > div {
+	--user-width: 7.25rem;
+	margin-left: 50%;
+	display: flex;
+	transition: transform 250ms ease-out;
+}
+
+.user {
+	display: flex;
+	flex-direction: column;
+	width: calc(var(--user-width) + 1.5rem);
+	padding: 1.25rem 1.25rem 2.75rem 1.25rem;
+	transform: scale(0.75);
+	transition: transform 250ms ease-out;
+	cursor: pointer;
+	margin-left: -0.75rem;
+	margin-right: -0.75rem;
+	position: relative;
+}
+
+.user::before {
+	background: radial-gradient(circle at top left, #214F67, #15253D);
+	z-index: -1;
+	opacity: 0;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transition: opacity 250ms linear;
+	border-radius: 0.25rem;
+	box-shadow:
+		0 0 0.1rem #00bdfe60,
+		0 0 0.2rem #00bdfe60,
+		0 0 0.3rem #00bdfe60,
+		0 0 0.4rem #00bdfe60,
+		0 0 0.6rem #00bdfe40,
+		0 0 0.8rem #00bdfe20;
+}
+
+.user:hover {
+	transform: scale(0.8);
+}
+
+.user.selected {
+	transform: scale(1);
+	z-index: 1;
+}
+
+.user.selected::before {
+	animation: pulse-box-shadow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-box-shadow {
+    0% { opacity: 0.75; }
+    50% { opacity: 1; }
+    100% { opacity: 0.75; }
+}
+
+.user.selected:hover {
+	transform: scale(1);
+}
+
+.avatar {
+	margin-bottom: 1rem;
+	position: relative;
+	padding-bottom: 100%;
+}
+
+.avatar::before {
+	content: '';
+	z-index: -1;
+	position: absolute;
+	top: -1rem;
+	left: -1rem;
+	bottom: -1rem;
+	right: -1rem;
+	border-radius: 0.125rem;
+	background: #133556;
+	transition: opacity 250ms linear;
+	opacity: 1;
+}
+
+.user.selected .avatar::before {
+	opacity: 0;
+}
+
+.avatar::after {
+	content: '';
+	z-index: -1;
+	position: absolute;
+	top: -0.125rem;	
+	left: -0.125rem;	
+	bottom: -0.125rem;	
+	right: -0.125rem;
+	background: radial-gradient(circle at top left, #e8e8e8, #626262);
+	border-radius: 0.125rem;	
+}
+
+.avatar img {
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.name {
+	font-weight: bold;
+	opacity: 0.5;
+	transition: opacity 250ms linear;
+	letter-spacing: 0.03rem;
+}
+
+.user.selected .name {
+	opacity: 1;
+}

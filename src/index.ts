@@ -8,13 +8,19 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 
 const createWindow = (): void => {
 	const mainWindow = new BrowserWindow({
-		height: 720,
-		width: 1280,
+		backgroundColor: '#000729',
+		show: false,
+		frame: false,
+		fullscreen: true,
 		webPreferences: {
 			preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 		},
 	});
 
+	mainWindow.once('ready-to-show', () => {
+		mainWindow.show();
+	});
+	
 	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 };
 

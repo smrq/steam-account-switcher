@@ -24,11 +24,17 @@
 	background: radial-gradient(40% 30%, hsl(213, 75%, 25%), transparent);
 }
 
+@keyframes fadein {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
 .layout > main > div {
 	--user-width: 7.25rem;
 	margin-left: 50%;
 	display: flex;
 	transition: transform 250ms ease-out;
+	animation: fadein 1000ms;
 }
 
 .user {
